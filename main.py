@@ -48,7 +48,7 @@ def hangman():
     limit = 5
     guess = input("This is the Hangman Word: " + display + "\n Enter your guess:  ")
     guess = guess.strip()
-    if len(guess.strip()) == 0 or len(guess.strip()) >= 2 or guess <= "9":
+    if len(guess.strip()) == 0 or len(guess.strip()) >= 2 :
         print("Invalid Input, Try a letter\n")
         hangman()
     elif guess in word:
