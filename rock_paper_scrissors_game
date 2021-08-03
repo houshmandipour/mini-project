@@ -61,7 +61,7 @@ def update_scoreboard(result):
     print("#" * 30)
 
 
-def play():
+def play_one_hand():
     """
     Main play ground handler
     """
@@ -85,6 +85,27 @@ def play():
     update_scoreboard(result)
     play_again = input("Do you want to play again? (y/n)")
     if play_again == 'y':
-        play()
+        play_one_hand()
+
+
+def log_time(func):
+    def wrapped_func(*args, **kwargs):
+        start_time = datetime.now()
+        result = func(*args, **kwargs)
+        end_time = datetime.now()
+        duration = end_time - start_time
+        hours = duration.seconds//3600
+        min = duration.seconds//60
+        sec = duration.seconds % 60
+        print(f"Total time : {hours} : {min} : {sec}")
+        return result
+    return wrapped_func
+
+
+@log_time
+def play():
+    play_one_hand()
+    
+
 
 play()
